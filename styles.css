@@ -770,6 +770,17 @@ video::-webkit-media-controls {
     0 0 18px rgba(248, 181, 28, 0.8);
 }
 
+.project-desc {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(209, 213, 219, 0.88);
+  margin-top: 0.15rem;
+  max-width: 95%;
+}
+
+.project-card:hover .project-desc {
+  color: rgba(249, 250, 251, 0.95);
+}
 
 /* footer */
 
