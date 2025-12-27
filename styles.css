@@ -262,17 +262,84 @@ video::-webkit-media-controls {
 
 .hero-avatar-glow {
   position: absolute;
-  inset: -10px;
-  border-radius: 999px;
+  inset: -16px;
+  border-radius: 50%;
+
   background: conic-gradient(
-    from 220deg,
-    var(--accent-orange),
-    var(--accent-amber),
-    var(--accent-red),
-    var(--accent-orange)
+    from 0deg,
+    #fbbf24,
+    #f97316,
+    #ef4444,
+    #f97316,
+    #fbbf24
   );
-  filter: blur(4px);
-  opacity: 0.95;
+
+  opacity: 1;
+
+  animation:
+    spinGlow 8s linear infinite,
+    glowPulse 2.8s ease-in-out infinite,
+    gradientShift 6s linear infinite;
+
+  will-change: transform, filter;
+  pointer-events: none;
+}
+
+/* Rotation */
+@keyframes spinGlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Brightness + glow breathing (replaces hue-rotate power) */
+@keyframes glowPulse {
+  0%, 100% {
+    filter:
+      blur(6px)
+      brightness(1.05)
+      saturate(1.4);
+  }
+  50% {
+    filter:
+      blur(9px)
+      brightness(1.35)
+      saturate(1.8);
+  }
+}
+
+/* Fake color motion without new hues */
+@keyframes gradientShift {
+  0% {
+    background: conic-gradient(
+      from 0deg,
+      #fbbf24,
+      #f97316,
+      #ef4444,
+      #f97316,
+      #fbbf24
+    );
+  }
+  100% {
+    background: conic-gradient(
+      from 360deg,
+      #fbbf24,
+      #f97316,
+      #ef4444,
+      #f97316,
+      #fbbf24
+    );
+  }
+}
+
+.hero-avatar-glow::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(18px);
+  opacity: 0.45;
 }
 
 .hero-avatar {
